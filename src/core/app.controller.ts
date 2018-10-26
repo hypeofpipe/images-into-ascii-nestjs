@@ -18,7 +18,7 @@ export class ImageController {
 
   @Post()
   @UseInterceptors(FileInterceptor('file', { storage: multer.memoryStorage() }))
-  @UsePipes(new FileValidatorPipe())
+  @UsePipes(FileValidatorPipe)
   @UseGuards(new KeyGuard())
   async transform(@UploadedFile() file: Express.Multer.File): Promise<string> {
     return await this.appService.transform(file)
