@@ -1,11 +1,14 @@
-import { Injectable } from '@nestjs/common';
-import { Base64 } from '../types/base64.type';
-
+import { Injectable } from '@nestjs/common'
+const asciify = require('asciify-image')
 
 @Injectable()
 export class AppService {
-  transform(base64: Base64): string {
-    console.log(base64)
-    return base64.file
+  async transform(file: Express.Multer.File): Promise<string> {
+    return await asciify(file.buffer, {
+      fit: 'box',
+      width: 100,
+      height: 100,
+      color: false
+    })
   }
 }
