@@ -2,7 +2,7 @@ import {
   Injectable,
   PipeTransform,
   ArgumentMetadata,
-  BadRequestException
+  BadRequestException,
 } from '@nestjs/common'
 import { Request } from 'express'
 
@@ -16,6 +16,7 @@ const mbToBytes = (mb: number) => {
 @Injectable()
 export class FileValidatorPipe implements PipeTransform<Request, Request> {
   transform(value: Request, _metadata: ArgumentMetadata) {
+    console.log('test§')
     const req = value
     if (!req.file) {
       console.log(req.file)
