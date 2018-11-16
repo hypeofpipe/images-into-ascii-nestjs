@@ -1,10 +1,9 @@
 import {
-  Injectable,
   PipeTransform,
-  ArgumentMetadata,
   BadRequestException,
+  ArgumentMetadata,
+  Injectable,
 } from '@nestjs/common'
-import { Request } from 'express'
 
 const mbToBytes = (mb: number) => {
   if (mb < 0) {
@@ -12,11 +11,16 @@ const mbToBytes = (mb: number) => {
   }
   return 1048576 * mb
 }
-
 @Injectable()
-export class FileValidatorPipe implements PipeTransform<Request, Request> {
-  transform(value: Request, _metadata: ArgumentMetadata) {
-    console.log('test§')
+export class FileValidatorPipe implements PipeTransform<any> {
+  constructor() {
+    console.log('whatrever')
+  }
+
+  transform(value: any, metadata: ArgumentMetadata) {
+    throw new BadRequestException("Photo as field 'file' is required!")
+    console.log(metadata)
+    console.log('xDDDDDDD')
     const req = value
     if (!req.file) {
       console.log(req.file)
