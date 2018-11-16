@@ -5,8 +5,8 @@
   "author": "",
   "license": "MIT",
   "scripts": {
-    "start": "ts-node src/core/main.ts",
-    "start:dev": "ts-node-dev src/core/main.ts",
+    "start": "ts-node src/main.ts",
+    "start:dev": "ts-node-dev src/main.ts",
     "start:debug": "node --inspect=0.0.0.0 --require ts-node/register --require tsconfig-paths/register src/core/main.ts"
   },
   "dependencies": {

@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common'
+import { SampleController } from './app.controller';
 
 @Module({
-  // imports: [TypeOrmModule.forRoot()],
-  controllers: [],
+  controllers: [SampleController],
   providers: []
 })
 export class AppModule {}
