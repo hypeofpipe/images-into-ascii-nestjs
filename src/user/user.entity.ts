@@ -1,27 +1,25 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm'
-
+import { PrimaryGeneratedColumn, Column, Entity, OneToMany } from 'typeorm'
+import { Image } from '../image/image.entity';
 @Entity()
 export class User {
-  constructor(userDTO: UserDTO){
-    this.username = userDTO.username
-    this.role = userDTO.role
-    this.hashPassword = userDTO.hashPassword
+  constructor(name, hashPassword, token = '') {
+    this.name = name
+    this.hashPassword = hashPassword
+    this.token = token
   }
+
   @PrimaryGeneratedColumn()
   id!: number
 
   @Column()
-  username!: string
-
-  @Column()
-  role!: string
+  name!: string
 
   @Column()
   hashPassword!: string
-}
 
-export interface UserDTO {
-  username: string,
-  role: string,
-  hashPassword: string
+  @Column()
+  token!: string
+
+  @OneToMany(type => Image, image => image.author)
+  images!: Image[]
 }
